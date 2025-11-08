@@ -16,11 +16,7 @@ class BookController
 
     private function findBook(int $id): Book
     {
-        $book = $this->searchBook->searchById($id);
-        if (!$book) {
-            throw new Exception("Book with ID $id not found.");
-        }
-        return $book;
+        return $this->searchBook->searchById($id);
     }
 
     private function printPages(Printer $printer, array $pages): void
