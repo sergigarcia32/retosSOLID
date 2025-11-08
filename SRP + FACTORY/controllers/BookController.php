@@ -7,11 +7,24 @@ class BookController
 {
     public function __construct(private SearchBook $searchBook, private BookReader $reader) {}
 
-    public function printBook(Printer $printer): void
+    public function printBook(int $bookId, Printer $printer): void
     {
-        $book = $this->searchBook->searchById(1);
-        //$pages = $this->reader->read($book);
-        $pages = $book->getPages();
+        $book = $this->findBook($bookId);
+        $pages = $this->reader->read($book);
+        $this->printPages($printer, $pages);
+    }
+
+    private function findBook(int $id): Book
+    {
+        $book = $this->searchBook->searchById($id);
+        if (!$book) {
+            throw new Exception("Book with ID $id not found.");
+        }
+        return $book;
+    }
+
+    private function printPages(Printer $printer, array $pages): void
+    {
         $printer->printPages($pages);
     }
 }

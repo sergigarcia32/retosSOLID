@@ -14,8 +14,8 @@ $app = new BookController($searchBook, $bookReader);
 
 $typePrinter = new HtmlPrinterFactory();
 $htmlPrinter = $typePrinter->createPrinter();
-$app->printBook($htmlPrinter);
+$app->printBook(1, $htmlPrinter);
 
 $typePrinter = new PlainPrinterFactory();
 $plainPrinter = $typePrinter->createPrinter();
-$app->printBook($plainPrinter);
+$app->printBook(1, $plainPrinter);
