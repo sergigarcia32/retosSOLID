@@ -1,21 +1,15 @@
 <?php
 include_once __DIR__ . '/../model/Book.php';
 include_once __DIR__ . '/../interface/Printer.php';
+include_once __DIR__ . '/../impl/SearchBook.php';
+include_once __DIR__ . '/../impl/BookReader.php';
 class BookController
 {
-    function __construct()
+    public function __construct(private SearchBook $searchBook, private BookReader $reader) {}
+
+    public function printBook(Printer $printer): void
     {
-      
-    }
-    public function printBook(Book $book, Printer $printer): void
-    {
-        while (true) {
-            $page = $book->getCurrentPage();
-            if ($page === 'Fin del libro') {
-                break;
-            }
-            $printer->printPage($page);
-            $book->nextPage();
-        }
+        $book = $this->searchBook->searchById(1);
+        $this->reader->read($book, $printer);
     }
 }
