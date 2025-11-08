@@ -10,7 +10,8 @@ class BookController
     public function printBook(Printer $printer): void
     {
         $book = $this->searchBook->searchById(1);
-        $pages = $this->reader->read($book);
+        //$pages = $this->reader->read($book);
+        $pages = $book->getPages();
         $printer->printPages($pages);
     }
 }

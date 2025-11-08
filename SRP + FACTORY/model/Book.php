@@ -23,6 +23,11 @@ class Book
         return $this->author;
     }
 
+    public function getPages(): array
+    {
+        return $this->pages;
+    }
+
     public function getCurrentPage(): string
     {
         return $this->pages[$this->currentPage] ?? 'Fin del libro';
