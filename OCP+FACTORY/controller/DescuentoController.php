@@ -10,8 +10,8 @@ class DescuentoController
         $this->descuentoService = new DescuentoService();
     }
 
-    public function aplicarDescuento(int $idCliente, float $monto): float
+    public function aplicarDescuento(int $idCliente, float $monto, EstrategiaDescuento $estrategia): float
     {
-        return $this->descuentoService->aplicarDescuentoCliente($idCliente, $monto);
+        return $this->descuentoService->aplicarDescuentoCliente($idCliente, $monto, $estrategia);
     }
 }
